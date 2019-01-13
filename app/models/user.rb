@@ -1,5 +1,9 @@
 class User < ApplicationRecord
 
+    # before_save {self.email = self.email.downcase }
+    # before_save {self.email.downcase! }
+    before_save {email.downcase! }
+
     # validates :name, :presence => true # これも同じです。
     # validates(シンボル, ハッシュ)
     # validates(:name, {:presence => true}) # これもいける
