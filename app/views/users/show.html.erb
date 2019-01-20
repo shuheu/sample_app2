@@ -1,11 +1,11 @@
-
-
-
-<%= @user.name %>, <%= @user.email %> <br>
-<p><%= @user.created_at %></p>
-<p><%= @user.updated_at %></p>
-<p><% timenow = Time.now %></p>
-<p><%=  "今の時間は #{timenow} です。" %></p>
-
-
-
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user, size: 50 %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+</div>
