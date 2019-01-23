@@ -24,9 +24,11 @@ class SessionsController < ApplicationController
     
  
   end #create
+  
+  def destroy
+    log_out
+    redirect_to root_url
 
-  def destory
-
-  end #destory
+  end #destroy
 
 end
