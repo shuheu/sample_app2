@@ -12,7 +12,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # 成功時のアクション ユーザページまで飛ばす user/#{@params[:id]} とか？
+      log_in @user
       flash[:success] = "Welcome to the Sample App! ~ようこそ~"
+      
       redirect_to @user
     else
       render 'new'
