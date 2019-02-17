@@ -73,16 +73,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
-  # # 自作
-  # test "User.digestのテスト" do
-  #   # 
-  #   @user.
-  # end
-
-  # test "rememberメソッド のテスト" do
-  #   #ただしくDBのrememberdigestに反映されているか？
-
-  # end
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
 
 
 
