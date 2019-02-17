@@ -53,6 +53,7 @@ before_action :correct_user,   only: [:edit, :update] #正しいユーザかど�
     # ログイン済みユーザーかどうか確認
     def logged_in_user
       unless logged_in?
+        store_location #アクセスしようとしたURLを覚えておく
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
