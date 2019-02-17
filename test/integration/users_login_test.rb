@@ -47,6 +47,24 @@ test "ログイン成功からログアウトのテスト" do #"login with valid
 
 end
 
+test "ログイン（次回から自動でログイン）のテスト" do
+  log_in_as(@user, remember_me: '1')
+  # assert_not_empty cookies['remember_token']
+  assert_equal cookies['remember_token'], assigns(:user).remember_token
+
+
+end
+
+test "ログイン（次回から自動でログインをしない）場合のテスト" do
+  # クッキーを保存してログイン
+  log_in_as(@user, remember_me: '1')
+  delete logout_path
+  # クッキーを削除してログイン
+  log_in_as(@user, remember_me: '0')
+  assert_empty cookies['remember_token']
+end
+
+
 
 
 end
