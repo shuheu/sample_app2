@@ -1,11 +1,18 @@
 class UsersController < ApplicationController
-before_action :logged_in_user, only: [:edit, :update]
+before_action :logged_in_user, only: [:index, :edit, :update]
 before_action :correct_user,   only: [:edit, :update] #正しいユーザかどうかのチェック
 
   def new
     @user = User.new 
     # debugger #ここではからのuserをわたしている？
   end
+
+  def index 
+    @users = User.all
+
+  end
+
+
   def show 
     # debugger 
     @user = User.find(params[:id])
