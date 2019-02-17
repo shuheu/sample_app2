@@ -11,18 +11,16 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # 成功
       log_in user
-      remember user
+
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user) # 三項演算子    
+      
       redirect_to user # user_url(user)
     else
       #失敗
       flash.now[:danger] = "ログイン失敗 Emailとpasswordの組み合わせが正しくありません。"
       render 'new'
     end #if
-
-    
-    
-    
-    
+   
  
   end #create
   
