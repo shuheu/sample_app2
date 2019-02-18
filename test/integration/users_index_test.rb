@@ -14,6 +14,8 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
                                           email: "user@example.com",
                                           password:              "password",
                                           password_confirmation: "password" } }
+        
+       
     end
 
 
