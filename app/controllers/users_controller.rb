@@ -23,10 +23,13 @@ before_action :admin_user,     only: :destroy
     @user = User.new(user_params)
     if @user.save
       # 成功時のアクション ユーザページまで飛ばす user/#{@params[:id]} とか？
-      log_in @user
-      flash[:success] = "Welcome to the Sample App! ~ようこそ~"
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
       
-      redirect_to @user
+      # log_in @user
+      # flash[:success] = "Welcome to the Sample App! ~ようこそ~"
+      # redirect_to @user
     else
       render 'new'
     end
