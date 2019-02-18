@@ -28,5 +28,27 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to @other_user
     assert_not @other_user.reload.admin?
   end
+
+  #destroy
+  test "ユーザ削除（未ログイン時）はリダイレクトされること" do
+    assert_no_difference 'User.count' do 
+      delete user_path(@user)
+    end
+    assert_redirected_to login_url  
+  end
+
+  test "should redirect destroy when logged in as a non-admin" do
+    log_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete user_path(@user)
+    end
+    assert_redirected_to root_url
+
+  end
+
+
+
+
+
   
 end
