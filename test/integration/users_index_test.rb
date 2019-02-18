@@ -1,15 +1,21 @@
 require 'test_helper'
 
 class UsersIndexTest < ActionDispatch::IntegrationTest
-  require 'test_helper'
-
-  class UsersIndexTest < ActionDispatch::IntegrationTest
-  
     def setup
       @admin     = users(:michael)
       @non_admin = users(:archer)
+      # @non_activated_user = users(:no_active)
+      # @non_activated_user = User.new(name: non nonnon)
     end
-  
+    # #自作
+    test "no active user should no-display at index view" do 
+      #新規にユーザを作詞
+        post users_path, params: { user: { name:  "Example User",
+                                          email: "user@example.com",
+                                          password:              "password",
+                                          password_confirmation: "password" } }
+    end
+
 
     test "index as admin including pagination and delete links" do
       log_in_as(@admin)
@@ -34,5 +40,4 @@ class UsersIndexTest < ActionDispatch::IntegrationTest
       assert_select 'a', text: 'delete', count: 0
     end
 
-  end
 end

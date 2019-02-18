@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email].downcase)
     #認証
     if @user && @user.authenticate(params[:session][:password])
-      if user.activated?
+      if @user.activated?
           # 成功
           log_in @user
           params[:session][:remember_me] == '1' ? remember(@user) : forget(@user) # 三項演算子    
